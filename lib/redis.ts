@@ -28,7 +28,7 @@ class Theme extends Entity {}
 let schema = new Schema(
 	Theme,
 	{
-		name: { type: "text" },
+		name: { type: "text", sortable: true  },
 		attempts: { type: "string" },
 		success: { type: "string" },
 		url: { type: "string" },
@@ -73,11 +73,16 @@ export async function UpdateTheme(id: string, process: string) {
 export async function SearchTheme(text: string) {
 	await connect();
 	const repository = client.fetchRepository(schema);
-	const term = text;
+	const term = text + "*";
+	if (text == ""){
+		const themes = await repository.search().sortAscending('name').return.all();
+		return themes;
+	}
 	const themes = await repository
 		.search()
 		.where("name")
-		.matches(text)
+		.matches(term)
+		.sortAscending('name')
 		.return.all();
         
 	return themes;

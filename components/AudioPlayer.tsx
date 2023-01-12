@@ -28,6 +28,7 @@ const useAudio = (url) => {
 		audio.addEventListener("ended", () => setPlaying(false));
 		return () => {
 			audio.pause();
+			audio.removeEventListener("ended", () => setPlaying(false));
 		};
 	}, []);
 

@@ -14,10 +14,9 @@ type Data = {
 
 
 async function Fetch(localThemes: Data[]) {
-	// const res = await fetch("http://localhost:3000/api/SearchThemes");
-	// const result = (await res.json()) as { themes: Data[] };
-	// const themes = result.themes as Data[];
-	const themes = localThemes;
+	const res = await fetch("http://localhost:3000/api/SearchThemes");
+	const result = (await res.json()) as { themes: Data[] };
+	const themes = result.themes as Data[];
 	console.log(themes);
 	return themes;
 }
