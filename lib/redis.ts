@@ -4,7 +4,14 @@ const client = new Client();
 
 async function connect() {
 	if (!client.isOpen()) {
+		console.log("Opened")
 		await client.open(process.env.REDIS_URL);
+	}
+}
+
+async function close() {
+	if (client.isOpen()) {
+		await client.close();
 	}
 }
 
@@ -43,6 +50,7 @@ export async function CreateTheme(data: Data) {
 	const repository = client.fetchRepository(schema);
 	const theme = repository.createEntity(data);
 	const id = await repository.save(theme);
+	await close()
 	return id;
 }
 
@@ -51,6 +59,7 @@ export async function SearchRedis() {
 	const repository = client.fetchRepository(schema);
 	await repository.createIndex();
 	const themes = await repository.search().return.all();
+	await close()
 	return themes;
 }
 
@@ -67,6 +76,7 @@ export async function UpdateTheme(id: string, process: string) {
 		}
 		await repository.save(theme);
 	}
+	await close()
 	return theme;
 }
 
@@ -84,6 +94,6 @@ export async function SearchTheme(text: string) {
 		.matches(term)
 		.sortAscending('name')
 		.return.all();
-        
+    await close()
 	return themes;
 }

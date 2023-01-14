@@ -25,7 +25,7 @@ export default async function app() {
 	let Themes = await Fetch(themes);
 
 	return (
-		<div className={"flex justify-center items-center layer1 spacer"}>
+		<div className={"flex justify-center items-start p-8 spacer bg-[hsl(0,0%,10%)]"}>
 			<AudioInterface Themes={Themes} />
 		</div>
 	);
