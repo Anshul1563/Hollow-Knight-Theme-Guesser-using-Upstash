@@ -1,32 +1,26 @@
 import { AudioPlayer } from "../../components/AudioPlayer";
 import AudioInterface from "./AudioInterface";
-import themes from "./themes";
-import "../../styles/quiz.css"
+import "../../styles/quiz.css";
+import Image from "next/image";
+import HKlogo from "../../public/HKlogo.svg"
 
-type Data = {
-	name: string;
-	attempts: string;
-	success: string;
-	url: string;
-	entityId: string;
-};
-
-
-
-async function Fetch(localThemes: Data[]) {
+async function FetchThemes() {
 	const res = await fetch("http://localhost:3000/api/SearchThemes");
-	const result = (await res.json()) as { themes: Data[] };
-	const themes = result.themes as Data[];
-	console.log(themes);
-	return themes;
+	const result = await res.json();
+	return result;
 }
 
-export default async function app() {
-	let Themes = await Fetch(themes);
+export default async function App() {
+	let data = await FetchThemes();
 
 	return (
-		<div className={"flex justify-center items-start p-8 spacer bg-[hsl(0,0%,10%)]"}>
-			<AudioInterface Themes={Themes} />
+		<div
+			className={
+				"flex flex-col gap-8 justify-start items-center p-8 spacer bg-[hsl(0,0%,10%)]"
+			}
+		>
+			<Image className="filter-white" src={HKlogo} width = {400} height = {100}  alt = "HK logo"></Image>
+			<AudioInterface Themes={data.themes} />
 		</div>
 	);
 }

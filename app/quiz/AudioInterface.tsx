@@ -1,23 +1,21 @@
 "use client";
 import { useEffect, useState } from "react";
 import { AudioPlayer } from "../../components/AudioPlayer";
+import { Theme } from "../../typings";
 
-type Data = {
-	name: string;
-	attempts: string;
-	success: string;
-	url: string;
-	entityId: string;
-};
 
-export default function AudioInterface({ Themes }: { Themes: Data[] }) {
+
+export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 	const [selection, setSelection] = useState("");
 	const [index, setIndex] = useState(0);
+	const [count,setCount] = useState(0)
 	const [status, setStatus] = useState("Submit Answer");
+	const [randoms,setRandoms] : [number[] , any] = useState([])
 
-	async function Update(entityId: string, process: string) {
+	async function Update(id: string, process: string) {
+		const update = {id, process}
 		const res = await fetch("/api/UpdateTheme", {
-			body: JSON.stringify({ entityId: entityId, process: process }),
+			body: JSON.stringify({update}),
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -48,8 +46,8 @@ export default function AudioInterface({ Themes }: { Themes: Data[] }) {
 	}
 
 	function handleClick() {
-		const length = Themes.length;
-		setIndex((index + 1) % length);
+		setIndex(randoms[(count + 1)]);
+		setCount((count + 1))
 		setStatus("Submit Answer");
 		setSelection("");
 	}
@@ -57,10 +55,10 @@ export default function AudioInterface({ Themes }: { Themes: Data[] }) {
 	function Validate(name: string, id: string) {
 		if (selection == name) {
 			setStatus("Correct");
-			Update(id, "correct");
+			Update(id, "Correct");
 		} else {
 			setStatus("Incorrect");
-			Update(id, "incorrect");
+			Update(id, "Incorrect");
 		}
 	}
 
@@ -79,7 +77,7 @@ export default function AudioInterface({ Themes }: { Themes: Data[] }) {
 						: "bg-black")
 				}
 				onClick={() => ThemeSelect(theme.name)}
-				key={theme.entityId}
+				key={theme.id}
 			>
 				{theme.name}
 			</div>
@@ -87,12 +85,31 @@ export default function AudioInterface({ Themes }: { Themes: Data[] }) {
 	});
 	const [audioElements, setAudioElements]: [any, any] = useState([]);
 
+	function shuffle(array : number[]) {
+		let currentIndex = array.length,  randomIndex;
+	  
+		// While there remain elements to shuffle.
+		while (currentIndex != 0) {
+	  
+		  // Pick a remaining element.
+		  randomIndex = Math.floor(Math.random() * currentIndex);
+		  currentIndex--;
+	  
+		  // And swap it with the current element.
+		  [array[currentIndex], array[randomIndex]] = [
+			array[randomIndex], array[currentIndex]];
+		}
+	  
+		return array;
+	  }
+
+
 	useEffect(() => {
 		setAudioElements(
 			Themes.map((theme) => {
 				return (
 					<div
-						key={theme.entityId}
+						key={theme.id}
 						className="flex flex-col gap-4 w-full items-start"
 					>
 						<AudioPlayer link={theme.url} />
@@ -100,8 +117,12 @@ export default function AudioInterface({ Themes }: { Themes: Data[] }) {
 				);
 			})
 		);
+		let arr = Array.from(Array(Themes.length).keys())
+		shuffle(arr)
+		setIndex(arr[0])
+		setRandoms(arr)
 	}, []);
-
+	
 	return (
 		<div className="flex justify-center w-full items-start gap-4 flex-col">
 			<div className="flex gap-4">
@@ -125,7 +146,7 @@ export default function AudioInterface({ Themes }: { Themes: Data[] }) {
 								? "border-[hsl(120,100%,50%)] bg-[hsl(120,100%,82%)]"
 								: "border-[hsl(0,100%,50%)] bg-[hsl(0,100%,82%)]"))
 				}
-				onClick={() => Validate(Themes[index].name, Themes[index].entityId)}
+				onClick={() => Validate(Themes[index].name, Themes[index].id)}
 			>
 				{status}
 			</button>

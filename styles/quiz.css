@@ -1,5 +1,6 @@
 .spacer {
-	height: 100vh;
+	min-height: 100vh;
+	height: fit-content;
 	width: 100%;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -15,4 +16,8 @@
 		#d9e7ff 100%
 	);
 	
+}
+
+.filter-white{
+	filter: invert(98%) sepia(5%) saturate(212%) hue-rotate(101deg) brightness(118%) contrast(100%);
 }
