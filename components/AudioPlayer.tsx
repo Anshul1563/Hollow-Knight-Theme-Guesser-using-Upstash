@@ -3,20 +3,27 @@
 import React, { useState, useRef, useEffect } from "react";
 import MusicPlayerSlider from "./MaterialAP";
 
-const useAudio = (url) => {
-	const [audio] = useState(new Audio(url));
+const useAudio = (url : string,) => {
+	const [audio] = useState(() => new Audio(url));
 	const [playing, setPlaying] = useState(false);
 	const [duration, setDuration] = useState(0);
 	const [current, setCurrent] = useState(0);
-
 	const toggle = () => setPlaying(!playing);
+
+	
+
+	useEffect(()=> {
+		audio.src = url
+		setPlaying(false)
+		setCurrent(0)
+	},[url])
 
 	useEffect(() => {
 		if (playing) setTimeout(() => setCurrent(audio.currentTime), 100);
 	}, [current, playing]);
 
-	function skipTime(position : number){
-		setCurrent(position)
+	function skipTime(position: number) {
+		setCurrent(position);
 		audio.currentTime = position;
 	}
 
@@ -34,10 +41,9 @@ const useAudio = (url) => {
 
 	audio.oncanplay = () => setDuration(audio.duration);
 
-	function SetVolume(volume : number){
-		audio.volume = volume/100;
+	function SetVolume(volume: number) {
+		audio.volume = volume / 100;
 	}
-
 	return [playing, toggle, duration, current, skipTime, SetVolume];
 };
 
@@ -58,24 +64,27 @@ function secToTime(duration: number) {
 	return ret;
 }
 
-function AudioPlayer({ link }: { link: string }) {
+function AudioPlayer({ link } : { link: string}) {
 	function directLinkFromDropboxLink(dropboxLink: string) {
 		return dropboxLink
 			.replace("www.dropbox.com", "dl.dropbox.com")
 			.replace("?dl=0", "?dl=1");
 	}
 
-	const [playing, toggle, duration, current, skipTime, SetVolume] = useAudio(
-		directLinkFromDropboxLink(directLinkFromDropboxLink(link))
-	);
+	const [playing, toggle, duration, current, skipTime, SetVolume] = useAudio(directLinkFromDropboxLink(directLinkFromDropboxLink(link)))
 
 	const time = secToTime(Number(duration));
 	const currentTime = secToTime(Number(current));
 
 	return (
-		<div>
-			<MusicPlayerSlider SetVolume= {SetVolume} skipTime={skipTime}  playing = {playing} duration = {duration} current = {current} toggle = {toggle}  />
-		</div>
+		<MusicPlayerSlider
+			SetVolume={SetVolume}
+			skipTime={skipTime}
+			playing={playing}
+			duration={duration}
+			current={current}
+			toggle={toggle}
+		/>
 	);
 }
 

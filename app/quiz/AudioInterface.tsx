@@ -1,21 +1,21 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AudioPlayer } from "../../components/AudioPlayer";
 import { Theme } from "../../typings";
-
-
+import HKlogo from "../../public/HKlogo.svg";
 
 export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 	const [selection, setSelection] = useState("");
 	const [index, setIndex] = useState(0);
-	const [count,setCount] = useState(0)
+	const [count, setCount] = useState(0);
 	const [status, setStatus] = useState("Submit Answer");
-	const [randoms,setRandoms] : [number[] , any] = useState([])
+	const [randoms, setRandoms]: [number[], any] = useState([]);
 
 	async function Update(id: string, process: string) {
-		const update = {id, process}
+		const update = { id, process };
 		const res = await fetch("/api/UpdateTheme", {
-			body: JSON.stringify({update}),
+			body: JSON.stringify({ update }),
 			headers: {
 				"Content-Type": "application/json",
 			},
@@ -46,8 +46,8 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 	}
 
 	function handleClick() {
-		setIndex(randoms[(count + 1)]);
-		setCount((count + 1))
+		setIndex(randoms[count + 1]);
+		setCount(count + 1);
 		setStatus("Submit Answer");
 		setSelection("");
 	}
@@ -71,10 +71,17 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 		return (
 			<div
 				className={
-					"cursor-pointer transition-all text-white p-6 py-4 flex items-center justify-center text-xl hover:scale-110 active:scale-100 " +
+					"cursor-pointer transition-all text-white p-6 py-[12px] rounded-md flex items-center justify-center text-lg hover:scale-110 active:scale-100 " +
 					(theme.name.toLowerCase() == selection.toLowerCase()
+						? status == "Submit Answer"
+							? "bg-[#FF9F5F] text-[hsl(273,93%,17%)]"
+							: status == "Incorrect"
+							? "bg-red-800"
+							: "bg-green-800"
+						: Themes[index].name == theme.name && status != "Submit Answer"
 						? "bg-green-800"
-						: "bg-black")
+						: "bg-[hsl(273,93%,10%)]") +
+					(status == "Submit Answer" ? "" : " pointer-events-none")
 				}
 				onClick={() => ThemeSelect(theme.name)}
 				key={theme.id}
@@ -83,79 +90,84 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 			</div>
 		);
 	});
-	const [audioElements, setAudioElements]: [any, any] = useState([]);
 
-	function shuffle(array : number[]) {
-		let currentIndex = array.length,  randomIndex;
-	  
+	function shuffle(array: number[]) {
+		let currentIndex = array.length,
+			randomIndex;
+
 		// While there remain elements to shuffle.
 		while (currentIndex != 0) {
-	  
-		  // Pick a remaining element.
-		  randomIndex = Math.floor(Math.random() * currentIndex);
-		  currentIndex--;
-	  
-		  // And swap it with the current element.
-		  [array[currentIndex], array[randomIndex]] = [
-			array[randomIndex], array[currentIndex]];
-		}
-	  
-		return array;
-	  }
+			// Pick a remaining element.
+			randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex--;
 
+			// And swap it with the current element.
+			[array[currentIndex], array[randomIndex]] = [
+				array[randomIndex],
+				array[currentIndex],
+			];
+		}
+
+		return array;
+	}
 
 	useEffect(() => {
-		setAudioElements(
-			Themes.map((theme) => {
-				return (
-					<div
-						key={theme.id}
-						className="flex flex-col gap-4 w-full items-start"
-					>
-						<AudioPlayer link={theme.url} />
-					</div>
-				);
-			})
-		);
-		let arr = Array.from(Array(Themes.length).keys())
-		shuffle(arr)
-		setIndex(arr[0])
-		setRandoms(arr)
+		let arr = Array.from(Array(Themes.length).keys());
+		shuffle(arr);
+		setIndex(arr[0]);
+		setRandoms(arr);
 	}, []);
-	
+
 	return (
-		<div className="flex justify-center w-full items-start gap-4 flex-col">
-			<div className="flex gap-4">
+		<div className="spacer bg-[hsl(273,93%,17%)] pb-0 items-center flex flex-col justify-between gap-12">
+			<Image
+				priority={true}
+				className="filter-white mt-8"
+				src={HKlogo}
+				width={400}
+				height={100}
+				alt="HK logo"
+			></Image>
+			<div className="flex gap-4 self-start mx-8">
 				<input
 					type="text"
-					className="bg-[hsl(0,0%,5%)] w-[30%] min-w-[300px] py-2 p-6 text-white rounded-md"
+					className={
+						"bg-[hsl(273,93%,10%)] w-[30%] min-w-[300px] py-2 p-6 text-white rounded-md"
+					}
+					disabled={status == "Submit Answer" ? false : true}
 					placeholder="Search Theme Here..."
 					onChange={handleChange}
 					value={selection}
 				/>
-				<button className="transition-all bg-[hsl(0,93%,30%)] text-white py-2 p-6 rounded-md hover:scale-105 active:scale-100 active:text-[hsl(0,93%,30%)]" onClick={()=> setSelection("")}> Reset</button>
+				<button
+					className={
+						"transition-all bg-[hsl(0,93%,30%)] text-white py-2 p-6 rounded-md hover:scale-105 active:scale-100 active:text-[hsl(0,93%,30%)]" +
+						(status == "Submit Answer" ? "" : " pointer-events-none")
+					}
+					onClick={() => setSelection("")}
+					disabled={status == "Submit Answer" ? false : true}
+				>
+					{" "}
+					Reset
+				</button>
+				<button
+					className={
+						"transition-all bg-[#FFAADC] text-[hsl(273,92%,10%)] font-medium py-2 p-6 rounded-md hover:scale-105 active:scale-100 " +
+						(status != "Submit Answer" ? "pointer-events-none" : "")
+					}
+					onClick={() => Validate(Themes[index].name, Themes[index].id)}
+				>
+					{status}
+				</button>
+				<button
+					className="transition-all bg-[#FF9F5F] py-2 p-6 rounded-md hover:scale-105 active:scale-100 text-[#300356] font-medium "
+					onClick={handleClick}
+				>
+					Play Next Song{" "}
+				</button>
 			</div>
-			<div className="flex flex-wrap gap-4">{themeElements}</div>
-			{audioElements[index]}
-			<button
-				className={
-					"transition-all text-lg bg-[#72ff7e] text-white rounded-lg p-3 hover:scale-105 active:scale-100 " +
-					(status != "Submit Answer" &&
-						"pointer-events-none  border-4  text-black " +
-							(status == "Correct"
-								? "border-[hsl(120,100%,50%)] bg-[hsl(120,100%,82%)]"
-								: "border-[hsl(0,100%,50%)] bg-[hsl(0,100%,82%)]"))
-				}
-				onClick={() => Validate(Themes[index].name, Themes[index].id)}
-			>
-				{status}
-			</button>
-			<button
-				className="transition-all text-xl bg-[#ff7272] text-white rounded-lg p-3 hover:scale-105 active:scale-100 "
-				onClick={handleClick}
-			>
-				Play Next Song{" "}
-			</button>
+			<div className="flex flex-wrap gap-4 px-8 w-full justify-start items-start">{themeElements}</div>
+			<AudioPlayer link={Themes[index].url} />
 		</div>
 	);
 }

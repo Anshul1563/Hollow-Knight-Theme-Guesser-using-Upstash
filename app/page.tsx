@@ -39,6 +39,8 @@ function HomePage() {
 			const data = await res.json();
 			console.log("Theme Added>>>", data);
 		}
+
+		ThemeToUpstash()
 	}
 
 	async function fetchThemes() {
