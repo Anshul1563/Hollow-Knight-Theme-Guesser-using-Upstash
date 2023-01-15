@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest,
         return;
     }
     
-    const themeResponse =  await redis.hvals("themes",async ()=> await redis.quit())
+    const themeResponse =  await redis.hvals("themes")
 
     const themes : Theme[] = themeResponse.map((theme)=>{
         return JSON.parse(theme)

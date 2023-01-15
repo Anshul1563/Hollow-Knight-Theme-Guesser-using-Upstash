@@ -21,7 +21,7 @@ export default async function handler(
 
 	const { update } = req.body;
 
-	if (redis.status == "end") await redis.connect();
+	// if (redis.status == "end") await redis.connect();
 	const themeResponse = await redis.hget("themes", update.id);
 
 	const theme: Theme = JSON.parse(themeResponse!);
@@ -36,7 +36,7 @@ export default async function handler(
 		"themes",
 		theme.id,
 		JSON.stringify(theme),
-		async () => await redis.quit()
+		// async () => await redis.quit()
 	);
 
 	res.status(200).json({ theme });

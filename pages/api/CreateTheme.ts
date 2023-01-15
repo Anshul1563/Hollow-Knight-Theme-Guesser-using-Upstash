@@ -21,8 +21,8 @@ export default async function handler(req: NextApiRequest,
 
     const { theme } = req.body
 
-    if (redis.status == "end")
-        await redis.connect();
+    // if (redis.status == "end")
+    //     await redis.connect();
 
     await redis.hset("themes",theme.id, JSON.stringify(theme),()=> redis.quit())
     res.status(200).json({theme})
