@@ -160,7 +160,7 @@ export default function MusicPlayerSlider({
 							mt: -1,
 						}}
 					>
-						<IconButton
+						{duration > 0? <IconButton
 							aria-label={paused ? "play" : "pause"}
 							onClick={() => {
 								toggle();
@@ -178,7 +178,7 @@ export default function MusicPlayerSlider({
 									htmlColor={lightIconColor}
 								/>
 							)}
-						</IconButton>
+						</IconButton> : <div className="h-16 text-white flex justify-center items-center">Loading</div>}
 					</Box>
 					<Stack
 						spacing={2}

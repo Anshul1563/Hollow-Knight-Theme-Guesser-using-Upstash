@@ -2,9 +2,6 @@
 	min-height: 100vh;
 	height: fit-content;
 	width: 100%;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
 }
 
 .layer1 {

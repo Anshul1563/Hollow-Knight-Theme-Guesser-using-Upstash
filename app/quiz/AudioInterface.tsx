@@ -119,7 +119,7 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 	}, []);
 
 	return (
-		<div className="spacer bg-[hsl(273,93%,17%)] pb-0 items-center flex flex-col justify-between gap-12">
+		<div className="spacer bg-[hsl(273,93%,17%)] pb-0 items-center flex flex-col gap-12">
 			<Image
 				priority={true}
 				className="filter-white mt-8"
@@ -128,45 +128,49 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 				height={100}
 				alt="HK logo"
 			></Image>
-			<div className="flex gap-4 self-start mx-8">
-				<input
-					type="text"
-					className={
-						"bg-[hsl(273,93%,10%)] w-[30%] min-w-[300px] py-2 p-6 text-white rounded-md"
-					}
-					disabled={status == "Submit Answer" ? false : true}
-					placeholder="Search Theme Here..."
-					onChange={handleChange}
-					value={selection}
-				/>
-				<button
-					className={
-						"transition-all bg-[hsl(0,93%,30%)] text-white py-2 p-6 rounded-md hover:scale-105 active:scale-100 active:text-[hsl(0,93%,30%)]" +
-						(status == "Submit Answer" ? "" : " pointer-events-none")
-					}
-					onClick={() => setSelection("")}
-					disabled={status == "Submit Answer" ? false : true}
-				>
-					{" "}
-					Reset
-				</button>
-				<button
-					className={
-						"transition-all bg-[#FFAADC] text-[hsl(273,92%,10%)] font-medium py-2 p-6 rounded-md hover:scale-105 active:scale-100 " +
-						(status != "Submit Answer" ? "pointer-events-none" : "")
-					}
-					onClick={() => Validate(Themes[index].name, Themes[index].id)}
-				>
-					{status}
-				</button>
-				<button
-					className="transition-all bg-[#FF9F5F] py-2 p-6 rounded-md hover:scale-105 active:scale-100 text-[#300356] font-medium "
-					onClick={handleClick}
-				>
-					Play Next Song{" "}
-				</button>
+			<div className="flex flex-col gap-6 self-start w-full flex-1">
+				<div className="flex gap-4 ml-8">
+					<input
+						type="text"
+						className={
+							"bg-[hsl(273,93%,10%)] w-[30%] min-w-[300px] py-2 p-6 text-white rounded-md"
+						}
+						disabled={status == "Submit Answer" ? false : true}
+						placeholder="Search Theme Here..."
+						onChange={handleChange}
+						value={selection}
+					/>
+					<button
+						className={
+							"transition-all bg-[hsl(0,93%,30%)] text-white py-2 p-6 rounded-md hover:scale-105 active:scale-100 active:text-[hsl(0,93%,30%)]" +
+							(status == "Submit Answer" ? "" : " pointer-events-none")
+						}
+						onClick={() => setSelection("")}
+						disabled={status == "Submit Answer" ? false : true}
+					>
+						{" "}
+						Reset
+					</button>
+					<button
+						className={
+							"transition-all bg-[#FFAADC] text-[hsl(273,92%,10%)] font-medium py-2 p-6 rounded-md hover:scale-105 active:scale-100 " +
+							(status != "Submit Answer" ? "pointer-events-none" : "")
+						}
+						onClick={() => Validate(Themes[index].name, Themes[index].id)}
+					>
+						{status}
+					</button>
+					<button
+						className="transition-all bg-[#FF9F5F] py-2 p-6 rounded-md hover:scale-105 active:scale-100 text-[#300356] font-medium "
+						onClick={handleClick}
+					>
+						Play Next Song{" "}
+					</button>
+				</div>
+				<div className="flex flex-wrap gap-4 px-8 w-full  justify-start items-start">
+					{themeElements}
+				</div>
 			</div>
-			<div className="flex flex-wrap gap-4 px-8 w-full justify-start items-start">{themeElements}</div>
 			<AudioPlayer link={Themes[index].url} />
 		</div>
 	);

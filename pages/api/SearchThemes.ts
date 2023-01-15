@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest,
         return;
     }
     
-    if (redis.status == "end")
+    if (redis.status == "end" || redis.status == "close")
         await redis.connect();
     const themeResponse =  await redis.hvals("themes",async ()=> await redis.quit())
 
