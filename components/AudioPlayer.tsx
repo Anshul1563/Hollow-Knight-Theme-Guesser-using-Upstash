@@ -4,11 +4,22 @@ import React, { useState, useRef, useEffect } from "react";
 import MusicPlayerSlider from "./MaterialAP";
 
 const useAudio = (url: string) => {
-	const [audio] = useState(() => new Audio(url));
+
+
+
+	const [audio] = useState(() => {
+		try{
+			return new Audio(url)
+		}
+		catch(e){
+			return null
+		}
+	});
 	const [playing, setPlaying] = useState(false);
 	const [duration, setDuration] = useState(0);
 	const [current, setCurrent] = useState(0);
 	const toggle = () => setPlaying(!playing);
+	
 	
 
 	useEffect(() => {
@@ -39,7 +50,8 @@ const useAudio = (url: string) => {
 		};
 	}, []);
 
-	audio.oncanplay = () => setDuration(audio.duration);
+	if (audio)
+		audio.oncanplay = () => setDuration(audio.duration);
 
 	function SetVolume(volume: number) {
 		audio.volume = volume / 100;

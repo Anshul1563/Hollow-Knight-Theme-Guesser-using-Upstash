@@ -1,13 +1,15 @@
 import BarGraph from "./BarGraph";
+import Data from "../quiz/themes";
 
 async function FetchThemes() {
-	const res = await fetch("http://localhost:3000/api/SearchThemes",{ cache: 'no-store' });
+	const res = await fetch("/api/SearchThemes",{ next: { revalidate: 60 }});
 	const { themes } = await res.json();
 	return themes;
 }
 
 async function Results() {
-	const Themes = await FetchThemes();
+	// const Themes = await FetchThemes();
+	let Themes = Data.themes;
 
 	return (
 		<div className="h-screen w-full bg-[hsl(273,93%,17%)] flex flex-col justify-center items-center p-12 pt-6 gap-6">

@@ -44,7 +44,7 @@ function HomePage() {
 	}
 
 	async function fetchThemes() {
-		const res = await fetch("http://localhost:3000/api/SearchThemes");
+		const res = await fetch("/api/SearchThemes");
 		const result = (await res.json()) as { themes: Data[] };
 		const themes = result.themes as Data[];
 		const elements = themes.map((theme) => {
