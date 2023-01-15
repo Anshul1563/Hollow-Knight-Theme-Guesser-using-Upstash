@@ -3,7 +3,9 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AudioPlayer } from "../../components/AudioPlayer";
 import { Theme } from "../../typings";
-import HKlogo from "../../public/HKlogo.svg";
+import HKlogo from "../../public/HKlogo.png";
+import Header from "./Header";
+import { duration } from "@mui/material";
 
 export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 	const [selection, setSelection] = useState("");
@@ -11,6 +13,8 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 	const [count, setCount] = useState(0);
 	const [status, setStatus] = useState("Submit Answer");
 	const [randoms, setRandoms]: [number[], any] = useState([]);
+
+	
 
 	async function Update(id: string, process: string) {
 		const update = { id, process };
@@ -46,7 +50,7 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 	}
 
 	function handleClick() {
-		setIndex(randoms[count + 1]);
+		setIndex(randoms[(count + 1) % Themes.length]);
 		setCount(count + 1);
 		setStatus("Submit Answer");
 		setSelection("");
@@ -120,9 +124,9 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 
 	return (
 		<div className="spacer bg-[hsl(273,93%,17%)] pb-0 items-center flex flex-col gap-12">
+			<Header/>
 			<Image
 				priority={true}
-				className="filter-white mt-8"
 				src={HKlogo}
 				width={400}
 				height={100}

@@ -79,13 +79,13 @@ export default function App({ Themes }: { Themes: Theme[] }) {
 		labels,
 		datasets: [
 			{
-				label: "Incorrect Responses Ratio",
-				data: newThemes.map((theme) => theme.Fratio),
+				label: "Incorrect Responses",
+				data: newThemes.map((theme) => theme.errors),
 				backgroundColor: "rgb(153,27,27)",
 			},
 			{
-				label: "Correct Responses Ratio",
-				data: newThemes.map((theme) => theme.Sratio),
+				label: "Correct Responses",
+				data: newThemes.map((theme) => theme.success),
 				backgroundColor: "rgb(22,101,52)",
 			},
 		],
