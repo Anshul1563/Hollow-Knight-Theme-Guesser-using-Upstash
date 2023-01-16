@@ -1,3 +1,11 @@
+input,
+textarea,
+button,
+select,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
 .spacer {
 	min-height: 100vh;
 	height: fit-content;
