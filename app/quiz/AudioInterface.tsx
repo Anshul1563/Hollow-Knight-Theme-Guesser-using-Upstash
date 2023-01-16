@@ -75,7 +75,7 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 		return (
 			<div
 				className={
-					"cursor-pointer transition-all text-white p-6 py-[12px] rounded-md flex items-center justify-center text-lg hover:scale-110 active:scale-100 " +
+					"cursor-pointer transition-all text-white p-6 py-[12px] rounded-md flex items-center justify-center text-sm phone:text-lg hover:scale-110 active:scale-100 " +
 					(theme.name.toLowerCase() == selection.toLowerCase()
 						? status == "Submit Answer"
 							? "bg-[#FF9F5F] text-[hsl(273,93%,17%)]"
@@ -123,9 +123,10 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 	}, []);
 
 	return (
-		<div className="spacer bg-[hsl(273,93%,17%)] pb-0 items-center flex flex-col gap-12">
+		<div className="spacer bg-[hsl(273,93%,17%)] text-xs phone:text-base pb-0 items-center flex flex-col gap-12">
 			<Header/>
 			<Image
+				className="phone:block hidden"
 				priority={true}
 				src={HKlogo}
 				width={400}
@@ -133,11 +134,11 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 				alt="HK logo"
 			></Image>
 			<div className="flex flex-col gap-6 self-start w-full flex-1">
-				<div className="flex gap-4 ml-8">
+				<div className="flex flex-wrap gap-4 mx-8">
 					<input
 						type="text"
 						className={
-							"bg-[hsl(273,93%,10%)] w-[30%] min-w-[300px] py-2 p-6 text-white rounded-md"
+							"bg-[hsl(273,93%,10%)] w-[100%] phone:w-[30%] phone:min-w-[300px] py-2 p-6 text-white rounded-md"
 						}
 						disabled={status == "Submit Answer" ? false : true}
 						placeholder="Search Theme Here..."

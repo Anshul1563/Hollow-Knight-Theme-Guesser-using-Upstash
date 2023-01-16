@@ -22,6 +22,7 @@ const Widget = styled("div")(({ theme }) => ({
 	display: "flex",
 	flexDirection: "column",
 	alignItems: "end",
+	flexWrap: "wrap"
 }));
 
 const TinyText = styled(Typography)({
@@ -66,6 +67,7 @@ export default function MusicPlayerSlider({
 		<Box sx={{ width: "100%", overflow: "hidden", position : "sticky", bottom : 0 }}>
 			<Widget>
 				<Slider
+					className = ""
 					aria-label="time-indicator"
 					size="small"
 					value={position}
@@ -115,12 +117,13 @@ export default function MusicPlayerSlider({
 					<TinyText>{formatDuration(position)}</TinyText>
 					<TinyText>-{formatDuration(Number(duration) - position)}</TinyText>
 				</Box>
-				<div className="flex w-full justify-between ">
+				<div className="flex w-full flex-wrap justify-center phone:justify-between ">
 				<Stack
 						spacing={2}
 						direction="row"
 						sx={{ mb: 1, px: 1, visibility: "hidden" }}
 						alignItems="center"
+						className = "sm:block hidden"
 
 					>
 						<VolumeDownRounded htmlColor={lightIconColor} />
