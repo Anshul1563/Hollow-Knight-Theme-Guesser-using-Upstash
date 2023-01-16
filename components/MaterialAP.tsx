@@ -118,39 +118,7 @@ export default function MusicPlayerSlider({
 					<TinyText>-{formatDuration(Number(duration) - position)}</TinyText>
 				</Box>
 				<div className="flex w-full flex-wrap justify-center phone:justify-between ">
-				<Stack
-						spacing={2}
-						alignItems="center"
-						className = "sm:block hidden mb-1 px-1 invisible "
-					>
-						<VolumeDownRounded htmlColor={lightIconColor} />
-						<Slider
-							aria-label="Volume"
-							defaultValue={100}
-							onChange={(_, value) => {
-								SetVolume(value as number);
-							}}
-							className = "phone:w-[150px]"
-							sx={{
-								color: "white",
-								"& .MuiSlider-track": {
-									border: "none",
-								},
-								"& .MuiSlider-thumb": {
-									width: 24,
-									height: 24,
-									backgroundColor: "#fff",
-									"&:before": {
-										boxShadow: "0 4px 8px rgba(0,0,0,0.4)",
-									},
-									"&:hover, &.Mui-focusVisible, &.Mui-active": {
-										boxShadow: "none",
-									},
-								},
-							}}
-						/>
-						<VolumeUpRounded htmlColor={lightIconColor} />
-					</Stack>
+				<div className = "sm:block hidden mb-1 px-1 invisible w-[248px]" ></div>
 					<Box
 						sx={{
 							display: "flex",
