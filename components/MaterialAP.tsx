@@ -124,7 +124,6 @@ export default function MusicPlayerSlider({
 						sx={{ mb: 1, px: 1, visibility: "hidden" }}
 						alignItems="center"
 						className = "sm:block hidden"
-
 					>
 						<VolumeDownRounded htmlColor={lightIconColor} />
 						<Slider
@@ -133,8 +132,8 @@ export default function MusicPlayerSlider({
 							onChange={(_, value) => {
 								SetVolume(value as number);
 							}}
+							className = "phone:w-[150px]"
 							sx={{
-								width: "150px",
 								color: "white",
 								"& .MuiSlider-track": {
 									border: "none",
