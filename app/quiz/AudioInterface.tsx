@@ -24,7 +24,6 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 			method: "POST",
 		});
 		const result = await res.json();
-		
 	}
 
 	function SearchFiles() {
@@ -55,12 +54,17 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 	}
 
 	function Validate(name: string, id: string) {
-		if (selection == name) {
-			setStatus("Correct");
-			Update(id, "Correct");
-		} else {
-			setStatus("Incorrect");
-			Update(id, "Incorrect");
+		if (status == "Submit Answer") {
+			if (selection == name) {
+				setStatus("Correct");
+				Update(id, "Correct");
+			} else {
+				setStatus("Incorrect");
+				Update(id, "Incorrect");
+			}
+		}
+		else{
+			console.log("Already Answered")
 		}
 	}
 
