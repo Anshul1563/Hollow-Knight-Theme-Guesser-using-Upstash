@@ -1,5 +1,9 @@
 // "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+import HKlogo from "../public/HKlogo.png";
+
 // import { useState } from "react";
 // import { v4 as uuid } from "uuid";
 // import { Theme } from "../typings";
@@ -17,7 +21,7 @@
 // 	const [themeElements, setThemeElements] = useState<React.ReactNode[]>([]);
 
 // 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-		
+
 // 		e.preventDefault();
 // 		const id = uuid();
 // 		const formData = new FormData(e.currentTarget);
@@ -88,10 +92,25 @@
 // 	);
 // }
 
-function HomePage(){
+function HomePage() {
 	return (
-		<div>HomePage</div>
-	)
+		<div className="w-screen h-screen flex justify-center items-center bg-[hsl(273,93%,17%)] flex-col gap-4">
+			<a href="https://www.hollowknight.com/" rel="noreferrer" target="_blank">
+				<Image
+					priority={true}
+					src={HKlogo}
+					className="md:w-[500px] phone:w-[300px] w-[200px]"
+					alt="HK logo"
+				></Image>
+			</a>
+			<Link
+				className="bg-[hsl(24,100%,65%)] p-2 transition-all hover:scale-110 active:scale-100 text-lg rounded-lg shadow-md text-[hsl(273,93%,17%)] font-medium"
+				href="/quiz"
+			>
+				Begin Quiz
+			</Link>
+		</div>
+	);
 }
 
 export default HomePage;
