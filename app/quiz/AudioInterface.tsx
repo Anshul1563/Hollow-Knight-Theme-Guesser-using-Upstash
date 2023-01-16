@@ -137,7 +137,7 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 						<input
 							type="text"
 							className={
-								"bg-[hsl(273,93%,10%)] w-[100%] phone:w-[30%] phone:min-w-[300px] py-2 p-6 text-white rounded-md"
+								"bg-[hsl(273,93%,10%)] w-[100%] phone:w-[30%] phone:min-w-[300px] text-lg py-2 p-6 text-white rounded-md"
 							}
 							disabled={status == "Submit Answer" ? false : true}
 							placeholder="Search Theme Here..."
@@ -146,7 +146,7 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 						/>
 						<button
 							className={
-								"transition-all bg-[hsl(0,93%,30%)] text-white py-2 p-6 rounded-md hover:scale-105 active:scale-100 active:text-[hsl(0,93%,30%)]" +
+								"transition-all bg-[hsl(0,93%,30%)] text-white py-[12px] phone:py-2 p-6 rounded-md hover:scale-105 active:scale-100 active:text-[hsl(0,93%,30%)]" +
 								(status == "Submit Answer" ? "" : " pointer-events-none")
 							}
 							onClick={() => setSelection("")}
@@ -157,7 +157,7 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 						</button>
 						<button
 							className={
-								"transition-all bg-[#FFAADC] text-[hsl(273,92%,10%)] font-medium py-2 p-6 rounded-md hover:scale-105 active:scale-100 " +
+								"transition-all bg-[#FFAADC] text-[hsl(273,92%,10%)] font-medium py-[12px] phone:py-2 p-6 rounded-md hover:scale-105 active:scale-100 " +
 								(status != "Submit Answer" ? "pointer-events-none" : "")
 							}
 							onClick={() => Validate(Themes[index].name, Themes[index].id)}
@@ -165,7 +165,7 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 							{status}
 						</button>
 						<button
-							className="transition-all bg-[#FF9F5F] py-2 p-6 rounded-md hover:scale-105 active:scale-100 text-[#300356] font-medium "
+							className="transition-all bg-[#FF9F5F] py-[12px] phone:py-2 p-6 rounded-md hover:scale-105 active:scale-100 text-[#300356] font-medium "
 							onClick={handleClick}
 						>
 							Play Next Song{" "}

@@ -92,9 +92,11 @@ import HKlogo from "../public/HKlogo.png";
 // 	);
 // }
 
+
+
 function HomePage() {
 	return (
-		<div className="w-screen h-screen flex justify-center items-center bg-[hsl(273,93%,17%)] flex-col gap-4">
+		<div className="w-screen h-screen flex justify-center items-center bg-[hsl(273,93%,17%)] flex-col gap-4 p-2">
 			<a href="https://www.hollowknight.com/" rel="noreferrer" target="_blank">
 				<Image
 					priority={true}
@@ -103,8 +105,9 @@ function HomePage() {
 					alt="HK logo"
 				></Image>
 			</a>
+			<h1 className="text-white text-xl phone:text-4xl flex items-center justify-center text-center">Test your Hollow Knight knowledge <br/>Guess the themes from the Kingdom of Hallownest</h1>
 			<Link
-				className="bg-[hsl(24,100%,65%)] p-2 transition-all hover:scale-110 active:scale-100 text-lg rounded-lg shadow-md text-[hsl(273,93%,17%)] font-medium"
+				className="bg-[hsl(24,100%,65%)] p-2 transition-all hover:scale-110 active:scale-100 text-2xl rounded-lg shadow-md text-[hsl(273,93%,17%)] font-medium mt-8"
 				href="/quiz"
 			>
 				Begin Quiz
