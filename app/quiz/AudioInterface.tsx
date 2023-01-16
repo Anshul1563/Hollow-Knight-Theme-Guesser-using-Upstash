@@ -122,7 +122,7 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 
 	return (
 		<div>
-			<div className="spacer bg-[hsl(273,93%,17%)] pb-4 text-xs phone:text-base items-center flex flex-col gap-12">
+			<div className="spacer bg-[hsl(273,93%,17%)] pb-[350px] phone:pb-[150px] text-xs phone:text-base items-center flex flex-col gap-12">
 				<Header />
 				<Image
 					className="phone:block hidden"

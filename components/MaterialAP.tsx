@@ -64,7 +64,7 @@ export default function MusicPlayerSlider({
 	}, [current, duration, playing, toggle]);
 
 	return (
-		<Box sx={{ width: "100%", overflow: "hidden", position : "sticky", bottom : 0 }}>
+		<Box sx={{ width: "100%",position : "fixed", bottom : 0 }}>
 			<Widget>
 				<Slider
 					className = ""
