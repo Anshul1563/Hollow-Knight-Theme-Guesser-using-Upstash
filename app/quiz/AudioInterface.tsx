@@ -24,7 +24,7 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 			method: "POST",
 		});
 		const result = await res.json();
-		console.log("Updated", result);
+		
 	}
 
 	function SearchFiles() {

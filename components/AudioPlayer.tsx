@@ -48,8 +48,6 @@ const useAudio = (url: string) => {
 	useEffect(() => {
 		if (playing) {
 			setTimeout(() => {
-				console.log("Audio", audio!.currentTime);
-				console.log("Current", current);
 				if (current == audio!.currentTime) setCurrent(current + 0.000005);
 				else {
 					setCurrent(audio!.currentTime);
