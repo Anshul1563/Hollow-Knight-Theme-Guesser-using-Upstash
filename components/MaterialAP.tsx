@@ -120,10 +120,8 @@ export default function MusicPlayerSlider({
 				<div className="flex w-full flex-wrap justify-center phone:justify-between ">
 				<Stack
 						spacing={2}
-						direction="row"
-						sx={{ mb: 1, px: 1, visibility: "hidden" }}
 						alignItems="center"
-						className = "sm:block hidden"
+						className = "sm:block hidden mb-1 px-1 invisible "
 					>
 						<VolumeDownRounded htmlColor={lightIconColor} />
 						<Slider
