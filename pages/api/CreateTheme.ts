@@ -14,18 +14,18 @@ type ErrorData = {
 export default async function handler(req: NextApiRequest,
     res: NextApiResponse<Data | ErrorData>) {
 
-    if (req.method!= "POST"){
-        res.status(405).json({body : "Method not allowed"})
-        return;
-    }
+    // if (req.method!= "POST"){
+    //     res.status(405).json({body : "Method not allowed"})
+    //     return;
+    // }
 
-    const { theme } = req.body
+    // const { theme } = req.body
 
-    // if (redis.status == "end")
-    //     await redis.connect();
+    // // if (redis.status == "end")
+    // //     await redis.connect();
 
-    await redis.hset("themes",theme.id, JSON.stringify(theme))
-    res.status(200).json({theme})
+    // await redis.hset("themes",theme.id, JSON.stringify(theme))
+    // res.status(200).json({theme})
 
-
+    res.status(200).json({body : "Not Allowed"})
 }
