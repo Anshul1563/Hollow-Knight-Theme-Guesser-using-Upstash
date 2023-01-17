@@ -66,7 +66,9 @@ export const options = {
 };
 
 export default function App({ Themes }: { Themes: Theme[] }) {
+	
 	const newThemes = Themes.map((theme) => {
+		
 		theme.errors = -(theme.attempts - theme.success);
 		theme.Sratio = theme.success / theme.attempts;
 		theme.Fratio = theme.errors / theme.attempts;
@@ -90,6 +92,8 @@ export default function App({ Themes }: { Themes: Theme[] }) {
 			},
 		],
 	};
+
+	
 
 	return (
 		<div className="flex-1 w-full bg-[hsl(273,93%,10%)] rounded-md">

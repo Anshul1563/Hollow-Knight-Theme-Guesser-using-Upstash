@@ -5,7 +5,6 @@ import { AudioPlayer } from "../../components/AudioPlayer";
 import { Theme } from "../../typings";
 import HKlogo from "../../public/HKlogo.png";
 import Header from "./Header";
-import { duration } from "@mui/material";
 
 export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 	const [selection, setSelection] = useState("");
