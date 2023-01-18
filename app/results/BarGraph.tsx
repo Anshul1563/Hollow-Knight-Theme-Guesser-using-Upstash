@@ -57,7 +57,6 @@ export default function App({ Themes }: { Themes: Theme[] }) {
 	}
 
     newThemes = SortThemesByProperty(property);
-    console.log(property)
 
 
 	const options = [
@@ -81,12 +80,12 @@ export default function App({ Themes }: { Themes: Theme[] }) {
 	});
 
 	return (
-		<div className="w-full bg-[hsl(273,93%,10%)]">
+		<div className="w-full min-w-fit bg-[hsl(273,93%,10%)]">
 			<div className="flex text-white pt-8 pl-8 gap-4 items-center ">
-				<div className="bg-[hsl(273,93%,0%)] p-3 rounded-md">Sort By :</div>
+				<div className="bg-[hsl(273,93%,0%)] p-3 rounded-md whitespace-nowrap justify-self-start self-start">Sort By :</div>
 				<div className="flex gap-6 flex-wrap">{optionElements}</div>
 			</div>
-			<div className="h-[2500px]">
+			<div className="h-[2500px] min-w-[700px]">
 				<MyResponsiveBar data={newThemes} />
 			</div>
 		</div>
