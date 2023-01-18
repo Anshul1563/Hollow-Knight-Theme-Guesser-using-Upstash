@@ -165,9 +165,9 @@ const MyResponsiveBar = ({ data /* see data tab */ }) => (
 			tickSize: 0,
 			tickPadding: 5,
 			tickRotation: 0,
-			legend: "Responses",
-			legendPosition: "middle",
-			legendOffset: -40,
+			// legend: "Responses",
+			// legendPosition: "middle",
+			// legendOffset: -40,
 		}}
 		labelSkipWidth={12}
 		labelSkipHeight={12}
