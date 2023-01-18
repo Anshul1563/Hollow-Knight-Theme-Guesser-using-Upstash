@@ -85,7 +85,7 @@ export default function App({ Themes }: { Themes: Theme[] }) {
 				<div className="bg-[hsl(273,93%,0%)] p-3 rounded-md whitespace-nowrap justify-self-start self-start">Sort By :</div>
 				<div className="flex gap-6 flex-wrap">{optionElements}</div>
 			</div>
-			<div className="h-[2500px] min-w-[700px]">
+			<div className="h-[2500px]">
 				<MyResponsiveBar data={newThemes} />
 			</div>
 		</div>

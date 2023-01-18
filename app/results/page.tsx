@@ -19,7 +19,7 @@ async function Results() {
 
 
 	return (
-		<div className="w-full bg-[hsl(273,93%,17%)] flex flex-col justify-center items-center">
+		<div className="w-full min-w-[700px] bg-[hsl(273,93%,17%)] flex flex-col justify-center items-center">
 			<Header />
 			<div className=" flex flex-col justify-center items-center phone:p-12 p-2 pt-6 gap-6 flex-1 w-full ">
 				<h1 className="text-4xl p-4 bg-[#FFAADC] text-[hsl(273,93%,27%)] font-medium self-start ">
