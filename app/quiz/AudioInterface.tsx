@@ -132,7 +132,7 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 				<Image
 					className="phone:block hidden"
 					priority={true}
-					src={HKlogo}
+					src="https://drive.google.com/uc?export=view&id=15laQNlHR8QmeN4C2BTepYghhJTL414k9"
 					width={400}
 					height={100}
 					alt="HK logo"

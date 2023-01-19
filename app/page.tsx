@@ -100,7 +100,9 @@ function HomePage() {
 			<a href="https://www.hollowknight.com/" rel="noreferrer" target="_blank">
 				<Image
 					priority={true}
-					src={HKlogo}
+					src="https://drive.google.com/uc?export=view&id=15laQNlHR8QmeN4C2BTepYghhJTL414k9"
+					width={1000}
+					height={800}
 					className="md:w-[500px] phone:w-[300px] w-[200px]"
 					alt="HK logo"
 				></Image>
