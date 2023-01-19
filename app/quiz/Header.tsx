@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import HKlogo from "../../public/HKlogo.png";
+import HKlogo from "../../public/HKlogo.svg";
 
 function Header() {
 	return (
@@ -8,8 +8,8 @@ function Header() {
 			<Image
 				priority={true}
 				src={HKlogo}
-				height={50}
 				width={100}
+				height={50}
 				alt="HK logo"
 			></Image>
 			<div className="flex justify-around text-base w-full phone:w-auto phone:justify-start">
