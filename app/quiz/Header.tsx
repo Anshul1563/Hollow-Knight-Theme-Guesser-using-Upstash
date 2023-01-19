@@ -1,13 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import HKlogo from "../../public/HKlogo.svg";
+import HKlogo from "../../public/HKlogo.png";
 
 function Header() {
 	return (
 		<div className="sticky top-0 w-full z-50 flex-col phone:flex-row bg-[hsl(24,100%,69%)] text-[hsl(273,92%,27%)] pt-4 phone:pb-4 font-medium flex gap-2 phone:gap-8 phone:px-8 items-center phone:justify-between">
 			<Image
 				priority={true}
-				className="filter-white"
 				src={HKlogo}
 				height={50}
 				width={100}

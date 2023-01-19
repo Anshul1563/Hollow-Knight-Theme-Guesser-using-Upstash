@@ -12,17 +12,4 @@ a {
 	width: 100%;
 }
 
-.layer1 {
-	/* background-image: url("../public/gradient.svg"); */
-	background: rgb(63, 94, 251);
-	background: radial-gradient(
-		circle,
-		#e3ffe7 0%,
-		#d9e7ff 100%
-	);
-	
-}
 
-.filter-white{
-	filter: invert(98%) sepia(5%) saturate(212%) hue-rotate(101deg) brightness(118%) contrast(100%);
-}
