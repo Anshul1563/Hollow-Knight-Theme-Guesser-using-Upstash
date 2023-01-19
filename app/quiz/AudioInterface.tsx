@@ -123,8 +123,10 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 		setRandoms(arr);
 	}, []);
 
+
 	return (
 		<div>
+			
 			<div className="spacer bg-[hsl(273,93%,17%)] pb-[350px] phone:pb-[150px] text-xs phone:text-base items-center flex flex-col gap-12">
 				<Header />
 				<Image

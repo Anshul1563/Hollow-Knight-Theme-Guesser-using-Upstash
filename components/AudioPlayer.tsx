@@ -102,19 +102,10 @@ function secToTime(duration: number) {
 }
 
 function AudioPlayer({ link }: { link: string }) {
-	function directLinkFromDropboxLink(dropboxLink: string) {
-		return dropboxLink
-			.replace("www.dropbox.com", "dl.dropbox.com")
-			.replace("?dl=0", "?dl=1");
-	}
-
-	const [playing, toggle, duration, current, skipTime, SetVolume] = useAudio(
-		directLinkFromDropboxLink(directLinkFromDropboxLink(link))
-	);
-
+	
+	const [playing, toggle, duration, current, skipTime, SetVolume] = useAudio(link);
 	const time = secToTime(Number(duration));
 	const currentTime = secToTime(Number(current));
-
 	return (
 		<MusicPlayerSlider
 			SetVolume={SetVolume}
