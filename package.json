@@ -17,6 +17,7 @@
     "@nivo/bar": "^0.80.0",
     "@nivo/core": "^0.80.0",
     "@upstash/ratelimit": "^0.1.5",
+    "@vercel/analytics": "^0.1.8",
     "d3-scale": "^4.0.2",
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.1",

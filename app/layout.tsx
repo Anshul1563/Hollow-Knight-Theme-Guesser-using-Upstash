@@ -1,14 +1,18 @@
-import './globals.css'
+import { AnalyticsWrapper } from "./analytics";
+import "./globals.css";
 
 export default function RootLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode
+	children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <head />
-      <body>{children}</body>
-    </html>
-  )
+	return (
+		<html lang="en">
+			<head />
+			<body>
+				{children}
+				<AnalyticsWrapper />
+			</body>
+		</html>
+	);
 }
