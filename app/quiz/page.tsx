@@ -1,6 +1,6 @@
 import AudioInterface from "./AudioInterface";
 import "../../styles/quiz.css";
-import Themes from "./themes";
+
 
 
 async function FetchThemes() {
@@ -11,7 +11,7 @@ async function FetchThemes() {
 
 export default async function App() {
 	let data = await FetchThemes();
-	// let data = Themes
+	
 
 	return (
 		<>

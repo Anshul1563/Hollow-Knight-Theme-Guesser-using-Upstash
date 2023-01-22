@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import redis from "../../lib/upstash-redis";
 import { Theme } from "../../typings";
-import Themes from "../../app/quiz/themes";
+
 
 
 

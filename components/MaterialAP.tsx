@@ -41,12 +41,12 @@ export default function MusicPlayerSlider({
 	current,
 	SetVolume,
 }: {
-	skipTime: number | boolean | ((position: number) => void);
-	playing: number | boolean | (() => void);
-	duration: number | boolean | (() => void);
-	current: number | boolean | (() => void);
-	toggle: number | boolean | (() => void);
-	SetVolume: number | boolean | (() => void);
+	duration: number,
+	current: number,
+	skipTime: number | boolean | ((position: number) => void),
+	playing: number | boolean | (() => void),
+	toggle: number | boolean | (() => void),
+	SetVolume: number | boolean | (() => void),
 }) {
 	const theme = useTheme();
 	const [position, setPosition] = React.useState(0);

@@ -102,17 +102,17 @@ function secToTime(duration: number) {
 }
 
 function AudioPlayer({ link }: { link: string }) {
-	
-	const [playing, toggle, duration, current, skipTime, SetVolume] = useAudio(link);
+	const [playing, toggle, duration, current, skipTime, SetVolume] =
+		useAudio(link);
 	const time = secToTime(Number(duration));
 	const currentTime = secToTime(Number(current));
 	return (
 		<MusicPlayerSlider
+			duration={duration}
+			current={current}
 			SetVolume={SetVolume}
 			skipTime={skipTime}
 			playing={playing}
-			duration={duration}
-			current={current}
 			toggle={toggle}
 		/>
 	);
