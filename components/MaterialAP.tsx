@@ -33,6 +33,17 @@ const TinyText = styled(Typography)({
 	letterSpacing: 0.2,
 });
 
+
+interface Options {
+	duration: number,
+	current: number,
+	skipTime: (position: number) => void,
+	playing: boolean,
+	toggle: () => void,
+	SetVolume: (volume: number) => void,
+}
+
+
 export default function MusicPlayerSlider({
 	skipTime,
 	playing,
@@ -40,14 +51,7 @@ export default function MusicPlayerSlider({
 	toggle,
 	current,
 	SetVolume,
-}: {
-	duration: number,
-	current: number,
-	skipTime: number | boolean | ((position: number) => void),
-	playing: number | boolean | (() => void),
-	toggle: number | boolean | (() => void),
-	SetVolume: number | boolean | (() => void),
-}) {
+}: Options) {
 	const theme = useTheme();
 	const [position, setPosition] = React.useState(0);
 	const [paused, setPaused] = React.useState(true);

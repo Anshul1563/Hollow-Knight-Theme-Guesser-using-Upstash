@@ -3,7 +3,16 @@
 import React, { useState, useRef, useEffect } from "react";
 import MusicPlayerSlider from "./MaterialAP";
 
-const useAudio = (url: string) => {
+type Options =  [
+	duration: number,
+	current: number,
+	skipTime: (position: number) => void,
+	playing: boolean,
+	toggle: () => void,
+	SetVolume: (volume: number) => void,
+]
+
+const useAudio = (url: string) : Options => {
 	const [audio] = useState(() => {
 		try {
 			return new Audio(url);
@@ -81,7 +90,7 @@ const useAudio = (url: string) => {
 	function SetVolume(volume: number) {
 		audio!.volume = volume / 100;
 	}
-	return [playing, toggle, duration, current, skipTime, SetVolume];
+	return [duration, current, skipTime,playing,toggle, SetVolume]
 };
 
 function secToTime(duration: number) {
@@ -102,8 +111,7 @@ function secToTime(duration: number) {
 }
 
 function AudioPlayer({ link }: { link: string }) {
-	const [playing, toggle, duration, current, skipTime, SetVolume] =
-		useAudio(link);
+	const [duration, current, skipTime,playing,toggle, SetVolume] = useAudio(link);
 	const time = secToTime(Number(duration));
 	const currentTime = secToTime(Number(current));
 	return (
