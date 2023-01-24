@@ -22,7 +22,7 @@ export default async function handler(
 	const { update } = req.body;
 
 	// if (redis.status == "end") await redis.connect();
-	const themeResponse = await redis.hget("themes", update.id);
+	const themeResponse = await redis.hget(update.filter, update.id);
 
 	const theme: Theme = JSON.parse(themeResponse!);
 	if (update.process == "Correct") {
@@ -33,7 +33,7 @@ export default async function handler(
 	}
 
 	await redis.hset(
-		"themes",
+		update.filter,
 		theme.id,
 		JSON.stringify(theme),
 		// async () => await redis.quit()

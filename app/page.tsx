@@ -110,7 +110,7 @@ function HomePage() {
 			<h1 className="text-white text-xl phone:text-4xl flex items-center justify-center text-center">Test your Hollow Knight knowledge <br/>Guess the themes from the Kingdom of Hallownest</h1>
 			<Link
 				className="bg-[#ff944d] rounded-sm p-3 transition-all hover:scale-110 active:scale-100 text-2xl shadow-md text-[#C7E8F3] font-semibold mt-8"
-				href="/quiz"
+				href="/quiz/themes"
 			>
 				Begin Quiz
 			</Link>

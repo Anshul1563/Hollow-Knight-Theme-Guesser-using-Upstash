@@ -6,15 +6,15 @@ import { Theme } from "../../typings";
 import HKlogo from "../../public/HKlogo.png";
 import Header from "./Header";
 
-export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
+export default function AudioInterface({ Themes,Filter }: { Themes: Theme[], Filter : string }) {
 	const [selection, setSelection] = useState("");
 	const [index, setIndex] = useState(0);
 	const [count, setCount] = useState(0);
 	const [status, setStatus] = useState("Submit Answer");
 	const [randoms, setRandoms]: [number[], any] = useState([]);
 
-	async function Update(id: string, process: string) {
-		const update = { id, process };
+	async function Update(id: string, process: string, filter : string) {
+		const update = { id, process, filter };
 		const res = await fetch("/api/UpdateTheme", {
 			body: JSON.stringify({ update }),
 			headers: {
@@ -56,10 +56,10 @@ export default function AudioInterface({ Themes }: { Themes: Theme[] }) {
 		if (status == "Submit Answer") {
 			if (selection == name) {
 				setStatus("Correct");
-				Update(id, "Correct");
+				Update(id, "Correct",Filter);
 			} else {
 				setStatus("Incorrect");
-				Update(id, "Incorrect");
+				Update(id, "Incorrect",Filter);
 			}
 		}
 		else{

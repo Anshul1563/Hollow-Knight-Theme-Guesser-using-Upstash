@@ -21,9 +21,15 @@ function Header() {
 				</Link>
 				<Link
 					className="flex p-2 flex-1 phone:w[100px] md:w-[150px]  bg-[hsl(24,100%,65%)] border-x-2 border-[#ffffff] justify-center transition-all hover:scale-110 active:scale-100 items-center"
-					href="/quiz"
+					href="/quiz/themes"
 				>
-					Quiz
+					Themes
+				</Link>
+				<Link
+					className="flex p-2 flex-1 phone:w[100px] md:w-[150px]  bg-[hsl(24,100%,65%)] border-x-2 border-[#ffffff] justify-center transition-all hover:scale-110 active:scale-100 items-center"
+					href="/quiz/voices"
+				>
+					Voices
 				</Link>
 			</div>
 		</div>

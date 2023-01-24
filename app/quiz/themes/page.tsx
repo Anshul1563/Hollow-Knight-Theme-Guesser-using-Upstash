@@ -1,5 +1,5 @@
-import AudioInterface from "./AudioInterface";
-import "../../styles/quiz.css";
+import AudioInterface from "../AudioInterface";
+import "../../../styles/quiz.css";
 
 
 
@@ -12,10 +12,10 @@ async function FetchThemes() {
 export default async function App() {
 	let data = await FetchThemes();
 	
-
+	
 	return (
 		<>
-			<AudioInterface Themes={data.themes} />
+			<AudioInterface Themes={data.themes} Filter="themes" />
 		</>
 	);
 }
